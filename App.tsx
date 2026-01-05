@@ -5,19 +5,22 @@ import {OrderProvider} from "./src/context/OrderContext"
 import {PaymentProvider} from "./src/context/PaymentContext"
 import {AddressProvider} from "./src/context/AddressContext"
 import {CartProvider} from "./src/context/CartContext"
+import {AuthProvider} from "./src/context/AuthContext"
 
 export default function App() {
   return (
-    <OrderProvider>
-      <CartProvider>
-        <AddressProvider>
-          <PaymentProvider>
-            <NavigationContainer>
-              <AppNavigator />
-            </NavigationContainer>
-          </PaymentProvider>
-        </AddressProvider>
-      </CartProvider>
-    </OrderProvider>
+    <AuthProvider>
+      <OrderProvider>
+        <CartProvider>
+          <AddressProvider>
+            <PaymentProvider>
+              <NavigationContainer>
+                <AppNavigator />
+              </NavigationContainer>
+            </PaymentProvider>
+          </AddressProvider>
+        </CartProvider>
+      </OrderProvider>
+    </AuthProvider>
   );
 }

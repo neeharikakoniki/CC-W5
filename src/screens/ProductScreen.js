@@ -1,10 +1,12 @@
 import React, { useEffect, useState, useContext } from "react";
 import { View, Text, FlatList, Image, Button, StyleSheet } from "react-native";
 import { CartContext } from "../context/CartContext";
+import { useAuth } from "../context/AuthContext";
 
 export default function ProductsScreen({ navigation }) {
   const [products, setProducts] = useState([]);
   const { addToCart } = useContext(CartContext);
+  const { logout } = useAuth();
 
   useEffect(() => {
     fetch("https://dummyjson.com/products")
@@ -16,6 +18,7 @@ export default function ProductsScreen({ navigation }) {
     <View style={{ flex: 1, padding: 12 }}>
       <Button title="View Cart" onPress={() => navigation.navigate("Cart")} />
       <Button title="Order History" onPress={() => navigation.navigate("OrderHistory")} />
+      <Button title="Logout" onPress={logout} />
 
       <FlatList
         data={products}
